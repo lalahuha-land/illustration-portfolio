@@ -1,0 +1,149 @@
+@import '../styles/main.scss';
+
+.container {
+  padding: 6rem 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  @include respond-to('md') {
+    padding: 2rem 2rem 4rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  
+  @include respond-to('md') {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+  
+  @include respond-to('sm') {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  @include respond-to('lg') {
+    gap: 2rem;
+  }
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--indigo);
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    
+    .dark-theme & {
+      color: #aaa;
+    }
+  }
+}
+
+.emptyImage {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  opacity: 0.8;
+  
+  @include respond-to('sm') {
+    max-width: 400px;
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+  
+  p {
+    color: var(--text-secondary);
+  }
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 3rem 1rem;
+  
+  h2 {
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+  }
+}
+
+.retryButton {
+  padding: 10px 25px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--indigo);
+    transform: translateY(-2px);
+  }
+}
+
+.rainbowSpinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(
+    transparent,
+    var(--red),
+    var(--orange),
+    var(--yellow),
+    var(--green),
+    var(--blue),
+    var(--indigo),
+    var(--violet)
+  );
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .emptyImage {
+    opacity: 0.6;
+    filter: brightness(0.8);
+  }
+}

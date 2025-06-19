@@ -1,0 +1,266 @@
+// Add these at the top of your main.scss file
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Mixin for responsive media queries
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Invalid breakpoint: #{$breakpoint}.";
+  }
+}
+
+// Base responsive settings
+html {
+  font-size: 14px;
+  
+  @include respond-to('sm') {
+    font-size: 15px;
+  }
+  
+  @include respond-to('md') {
+    font-size: 16px;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  // Rainbow colors
+  --red: #FF6B6B;
+  --orange: #FFA94D;
+  --yellow: #FFD700;
+  --green: #51CF66;
+  --blue: #339AF0;
+  --indigo: #845EF7;
+  --violet: #CC5DE8;
+  
+  // Add these for consistent shadows
+  --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 15px rgba(0,0,0,0.08);
+  --shadow-lg: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Baloo 2', cursive;
+  color: #333;
+}
+
+.app {
+  padding-top: 80px;
+}
+
+// Rainbow scrollbar
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, 
+    var(--red), 
+    var(--orange), 
+    var(--yellow), 
+    var(--green), 
+    var(--blue), 
+    var(--indigo), 
+    var(--violet));
+  border-radius: 10px;
+}
+
+/* Dark Theme */
+.dark-theme {
+  --text-primary: #f0f0f0;
+  --text-secondary: #b0b0b0;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --card-bg: #2d2d2d;
+  --border-color: #444;
+  
+  body {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: var(--text-primary);
+  }
+  
+  h1, h2, h3, h4 {
+    color: var(--text-primary);
+  }
+  
+  .card, .skills, .funFacts, .formContainer {
+    background: var(--card-bg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  .contactForm {
+    .rainbowInput {
+      background: #252525;
+      border-color: #444;
+      color: #f0f0f0;
+      
+      &:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(51, 154, 240, 0.3);
+      }
+    }
+  }
+  
+  .about .avatar .circle {
+    background: conic-gradient(
+      rgba(255, 107, 107, 0.7), 
+      rgba(255, 169, 77, 0.7), 
+      rgba(255, 215, 0, 0.7), 
+      rgba(81, 207, 102, 0.7), 
+      rgba(51, 154, 240, 0.7), 
+      rgba(132, 94, 247, 0.7), 
+      rgba(204, 93, 232, 0.7),
+      rgba(255, 107, 107, 0.7)
+    );
+  }
+  
+  .colorPreview, .palette {
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+  }
+  
+  .slider {
+    background: linear-gradient(to right, #333, var(--track-color));
+  }
+}
+
+// Loading spinner
+.rainbowSpinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(
+    transparent,
+    var(--red),
+    var(--orange),
+    var(--yellow),
+    var(--green),
+    var(--blue),
+    var(--indigo),
+    var(--violet)
+  );
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: spin 1s linear infinite;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 1rem;
+  
+  p {
+    color: var(--text-secondary);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+// Base typography
+h1 {
+  font-size: 2.5rem;
+  
+  @include respond-to('md') {
+    font-size: 3rem;
+  }
+  
+  @include respond-to('lg') {
+    font-size: 3.5rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  
+  @include respond-to('md') {
+    font-size: 2.25rem;
+  }
+  
+  @include respond-to('lg') {
+    font-size: 2.5rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  
+  @include respond-to('md') {
+    font-size: 1.75rem;
+  }
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+// Better touch targets
+button, a {
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+// Prevent zoom on form inputs
+input, select, textarea {
+  font-size: 16px;
+  
+  @include respond-to('sm') {
+    font-size: inherit;
+  }
+}
+
+// Optimize image loading
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Optimize animations for mobile
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

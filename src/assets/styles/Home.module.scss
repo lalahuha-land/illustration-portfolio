@@ -1,0 +1,231 @@
+@import '../styles/main.scss';
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  
+  @include respond-to('md') {
+    padding-top: 0;
+  }
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  
+  @include respond-to('md') {
+    padding: 2rem;
+  }
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  
+  @include respond-to('sm') {
+    font-size: 4rem;
+  }
+  
+  @include respond-to('md') {
+    font-size: 5rem;
+  }
+  
+  @include respond-to('lg') {
+    font-size: 6rem;
+  }
+  
+  span {
+    background: linear-gradient(45deg, 
+      var(--red), 
+      var(--orange), 
+      var(--yellow), 
+      var(--green), 
+      var(--blue), 
+      var(--indigo), 
+      var(--violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+  
+  @include respond-to('sm') {
+    font-size: 1.5rem;
+  }
+  
+  @include respond-to('md') {
+    font-size: 1.8rem;
+  }
+  
+  .dark-theme & {
+    color: #aaa;
+  }
+}
+
+.ctaContainer {
+  margin-top: 2rem;
+}
+
+.ctaButton {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(45deg, var(--blue), var(--indigo));
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  display: inline-block;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    background: linear-gradient(45deg, var(--indigo), var(--violet));
+  }
+  
+  @include respond-to('sm') {
+    padding: 15px 50px;
+  }
+}
+
+.bubbleContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  filter: blur(20px);
+  
+  &:nth-child(1) {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    left: 10%;
+  }
+  
+  &:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    top: 60%;
+    left: 80%;
+  }
+  
+  &:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    left: 20%;
+  }
+  
+  &:nth-child(4) {
+    width: 250px;
+    height: 250px;
+    top: 30%;
+    left: 50%;
+  }
+  
+  &:nth-child(5) {
+    width: 180px;
+    height: 180px;
+    top: 70%;
+    left: 30%;
+  }
+  
+  &:nth-child(6) {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 70%;
+  }
+  
+  &:nth-child(7) {
+    width: 160px;
+    height: 160px;
+    top: 50%;
+    left: 10%;
+  }
+  
+  @include respond-to('md') {
+    opacity: 0.15;
+    
+    &:nth-child(1) {
+      width: 200px;
+      height: 200px;
+    }
+    
+    &:nth-child(2) {
+      width: 300px;
+      height: 300px;
+    }
+    
+    &:nth-child(4) {
+      width: 350px;
+      height: 350px;
+    }
+  }
+}
+
+.rainbowBar {
+  height: 10px;
+  display: flex;
+  width: 100%;
+}
+
+.rainbowSegment {
+  flex: 1;
+  height: 100%;
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .bubble {
+    opacity: 0.08;
+  }
+  
+  .ctaButton {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  .title span {
+    animation: none;
+  }
+  
+  .bubble {
+    animation: none !important;
+  }
+}

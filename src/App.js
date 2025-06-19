@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import RainbowNav from './components/navigation/RainbowNav';
+import Home from './sections/Home';
+import Gallery from './sections/Gallery';
+import About from './sections/About';
+import Contact from './sections/Contact';
+import ParticleBackground from './components/background/ParticleBackground';
+import { ThemeProvider } from './context/ThemeContext';
+import './assets/styles/main.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <Router>
+        <motion.div className="app">
+          <ParticleBackground />
+          <RainbowNav />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:category" element={<Gallery />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </motion.div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

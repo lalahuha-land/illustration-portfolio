@@ -1,0 +1,60 @@
+@import '../styles/main.scss';
+
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  
+  @include respond-to('md') {
+    gap: 1rem;
+  }
+}
+
+.filterButton {
+  position: relative;
+  padding: 8px 16px;
+  background: rgba(0,0,0,0.05);
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  
+  .dark-theme & {
+    background: rgba(255,255,255,0.1);
+  }
+  
+  &:hover {
+    background: rgba(0,0,0,0.1);
+    
+    .dark-theme & {
+      background: rgba(255,255,255,0.15);
+    }
+  }
+  
+  &.active {
+    font-weight: 600;
+    color: var(--indigo);
+    
+    .dark-theme & {
+      color: var(--violet);
+    }
+  }
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--indigo);
+  border-radius: 3px;
+  
+  .dark-theme & {
+    background: var(--violet);
+  }
+}
